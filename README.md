@@ -13,3 +13,5 @@ Here are the specific steps that you will need to perform in order to complete t
 
 Please note that if you working with an old version of R Studio, then there may be issues with package installation. This tutorial was created using R version 4.0.2 and R Studio 1.3.1073.
 
+Before starting the analysis on your own samples consider the questions/hypotheses you are addressing. The methods/analyses here may give you a good starting point but may not necessarily be the *best* method(s) for your data. 
+
