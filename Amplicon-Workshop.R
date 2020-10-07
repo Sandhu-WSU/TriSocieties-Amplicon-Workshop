@@ -183,7 +183,6 @@ head(track)
 
 # 12. Assign taxonomy ####
 taxa <- assignTaxonomy(seqtab.nochim, "~/Downloads/silva_nr99_v138_train_set.fa", multithread=TRUE)
-#you should see assignments at taxonomic levels
 # check your taxonomic classifications #
 taxa.print<- taxa
 rownames(taxa.print)
@@ -293,30 +292,30 @@ anova(shannon.model)
 ggplot(meta, aes(Shannon, Line, fill = Line)) + geom_boxplot() + theme_classic()
 
 # Evenness #
-observed.model<-lmer(Observed ~ Line * Total_Phenolics + (1|Block), data = meta)
-plot(observed.model)
-leveneTest(residuals(observed.model) ~ meta$Line)
-qqmath(observed.model)
+even.model<-lmer(Evenness ~ Line * Total_Phenolics + (1|Block), data = meta)
+plot(even.model)
+leveneTest(residuals(even.model) ~ meta$Line)
+qqmath(even.model)
 
-anova(observed.model)
+anova(even.model)
 
-ggplot(meta, aes(Observed, Line, fill = Line)) + geom_boxplot() + theme_classic() + 
+ggplot(meta, aes(Evenness, Line, fill = Line)) + geom_boxplot() + theme_classic() + 
   labs(axis.text.x = element_text(angle = -90, hjust = 0))
 
-ggplot(meta, aes(Total_Phenolics, Observed)) + geom_line() + theme_classic() + 
+ggplot(meta, aes(Total_Phenolics, Evenness)) + geom_line() + theme_classic() + 
   labs(axis.text.x = element_text(angle = -90, hjust = 0))
-ggplot(meta, aes(Total_Phenolics, Observed, colour = Line)) + geom_line() + theme_classic() + 
+ggplot(meta, aes(Total_Phenolics, Evenness, colour = Line)) + geom_line() + theme_classic() + 
   labs(axis.text.x = element_text(angle = -90, hjust = 0))
 
 # post-hoc test using estimated marginal means
-emmeans(observed.model, pairwise ~ Line, adjust = "none")
+emmeans(even.model, pairwise ~ Line, adjust = "none")
 # indicates no differences between lines
 
 # if covariate, then we can use estimated marginal means of linear trends
-emtrends(observed.model, pairwise ~ Line, var = "Total_Phenolics")
+emtrends(even.model, pairwise ~ Line, var = "Total_Phenolics")
 # indicates that Lines do not have a different trend of Total Phenolics ~ Richness 
 # we can plot this like so:
-emmip(observed.model, Line ~ Total_Phenolics, cov.reduce = range)
+emmip(even.model, Line ~ Total_Phenolics, cov.reduce = range)
 # 17. Heatmaps ####
 # this command, taxa_level, comes from the microbiomeSeq package and should be cited if you use this
 taxa_level <- function(physeq,which_level){
@@ -403,7 +402,7 @@ adonis(unifrac ~ Line, data = meta)
 
 pairwise.perm.manova(unifrac, meta$Line, nperm= 999, p.method = "BH")
 
-# 19. Plotting Relative Abundance Bar Charts and Ordinations####
+# 19. Plotting Relative Abundance Bar Charts####
 # phylum-level
 ps.phyla.perc <- taxa_level(ps.perc, "Phylum")
 
