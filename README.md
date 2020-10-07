@@ -5,11 +5,9 @@ In this tutorial, you will learn to use DADA2 to quality filter and process ampl
 Here are the specific steps that you will need to perform in order to complete the tutorial (This assumes that you already have R and R Studio installed):
 1. Download the .fastq.gz files, metadata file, and Amplicon-Workshop.R script provided above
 2. Download the silva_nr99_v138_train_set.fa reference database file here: https://zenodo.org/record/3986799#.X24ykC2z1Bw
-3. Create a folder to house the files for this workshop
-4. Add the .fastq.gz files, meatdata file, R script, and silva database to the newly created folder
-5. Open R Studio and open the R Script
-6. Set the working directory to wherever the folder is that you created in Step 5
-7. Start working from the R Script
+3. Open R Studio and open the R Script
+4. Set the working directory to wherever the folder is that you created in Step 5
+5. Start working from the R Script
 
 Please note that if you working with an old version of R Studio, then there may be issues with package installation. This tutorial was created using R version 4.0.2 and R Studio 1.3.1073.
 
