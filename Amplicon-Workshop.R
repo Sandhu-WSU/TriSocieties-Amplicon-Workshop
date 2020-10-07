@@ -30,7 +30,7 @@ list.files(path)
 
 
 # 3. Sort the forward and reverse reads #####
-# read in the file names and store as Fnames and Rnames
+# read in the file names and store as F.sam and R.sam
 F.sam <- sort(list.files(path, pattern="_R1_001.fastq.gz", full.names = TRUE))
 #You should see in your global env, fnFs chr[1:20] "and the path directory"
 R.sam <- sort(list.files(path, pattern="_R2_001.fastq.gz", full.names = TRUE))
@@ -73,7 +73,7 @@ filtRs <- file.path(filt_path, paste0(sample.names, "_R_filt.fastq.gz"))
 # this information is helpful if you're using 515F/806R primers in determining bp overlap https://www.illumina.com/content/dam/illumina-marketing/documents/products/appnotes/appnote_miseq_16S.pdf
 
 out <- filterAndTrim(F.sam, filtFs, R.sam, filtRs, truncLen=c(240,160),
-                     maxN=0, maxEE=c(2,2), truncQ=2,,
+                     maxN=0, maxEE=c(2,2), truncQ=2,
                      compress=TRUE, multithread=TRUE) 
 # set multithread to FALSE if using windows
 # this step takes awhile to perform
