@@ -12,3 +12,5 @@ Please note that if you working with an old version of R Studio, then there may 
 
 Before starting the analysis on your own samples consider the questions/hypotheses you are addressing. The methods/analyses here may give you a good starting point but may not necessarily be the *best* method(s) for your data. 
 
+email me if you are having problems or if you need clarificatin when working through the tutorial at muc345@psu.edu
+
