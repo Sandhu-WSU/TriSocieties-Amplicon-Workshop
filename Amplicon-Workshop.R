@@ -374,6 +374,7 @@ plot_ordination(ps.pruned, ordinate(ps.pruned, "PCoA", "bray"), color = "Line") 
 
 bc.asv <- phyloseq::distance(otu_table(ps.pruned), "bray")
 bc.phyl <- phyloseq::distance(otu_table(ps.phylum), "bray")
+unifrac <- UniFrac(ps.pruned, weighted=TRUE, normalized=TRUE)
 
 # betadisper
 disp.phyl <- betadisper(bc.phyl, meta$Line)
@@ -398,7 +399,6 @@ adonis(bc.asv ~ Line, data = meta)
 # if adonis is significant, move on to post-hoc test
 pairwise.perm.manova(bc.asv, meta$Line, nperm = 999)
 # what about phylogenetic distance?
-unifrac <- UniFrac(ps.pruned, weighted=TRUE, normalized=TRUE)
 adonis(unifrac ~ Line, data = meta)
 
 pairwise.perm.manova(unifrac, meta$Line, nperm= 999, p.method = "BH")
